@@ -1,11 +1,7 @@
 import {
-  Menu,
-  MenuButton,
-  Button,
-  MenuList,
-  MenuOptionGroup,
-  MenuItemOption,
-  MenuDivider,
+  Radio,
+  RadioGroup,
+  Stack
 } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "../store";
 import { setVisibility, Visibility } from "../visibility.slice";
@@ -21,13 +17,22 @@ export default function FilterMenu() {
 
   return (
     <>
-      <Menu closeOnSelect={true} size="sm">
+
+<RadioGroup onChange={(e) => handleChangeVisibility(e as Visibility)} value={visibility}>
+      <Stack direction='row'>
+        <Radio value='all'>all</Radio>
+        <Radio value='todo'>todo</Radio>
+        <Radio value='done'>done</Radio>
+      </Stack>
+    </RadioGroup>
+
+      {/* <Menu closeOnSelect={true} size="sm">
         <MenuButton as={Button} size="xs">
           filters
         </MenuButton>
         <MenuList minWidth="10px" p={1}>
           <MenuOptionGroup
-            onChange={(e) => handleChangeVisibility(e as Visibility)}
+            
             defaultValue="all"
             value={visibility}
             title="Status"
@@ -39,7 +44,7 @@ export default function FilterMenu() {
           </MenuOptionGroup>
           <MenuDivider />
         </MenuList>
-      </Menu>
+      </Menu> */}
     </>
   );
 }

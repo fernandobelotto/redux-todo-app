@@ -9,6 +9,7 @@ import {
 import { nanoid } from "nanoid";
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import { ColorModeSwitcher } from "./components/ColorModeSwitcher";
 import FilterMenu from "./components/FilterMenu";
 import TodosList from "./components/TodosList";
 import { addTodo } from "./todos.slice";
@@ -34,23 +35,30 @@ export default function App() {
   };
 
   return (
-    <Center mt="32">
-      <VStack spacing={5}>
-        <Heading>Redux Todo</Heading>
-        <HStack>
-          <Input
-            ref={inputRef}
-            value={inputValue}
-            placeholder="write todo here"
-            onChange={(e) => setInputValue(e.target.value)}
-          />
-          <Button isDisabled={!!!inputValue} onClick={handleAddTodo}>
-            Add Todo
-          </Button>
-        </HStack>
-        <FilterMenu />
-        <TodosList />
-      </VStack>
-    </Center>
+    <>
+      <ColorModeSwitcher />
+
+      <Center mt="32">
+        <VStack spacing={5}>
+          <Heading>Redux Todo</Heading>
+          <HStack>
+            <Input
+              ref={inputRef}
+              value={inputValue}
+              placeholder="write todo here"
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+            <Button
+              isDisabled={!!!inputValue}
+              onClick={handleAddTodo}
+            >
+              Add Todo
+            </Button>
+          </HStack>
+          <FilterMenu />
+          <TodosList />
+        </VStack>
+      </Center>
+    </>
   );
 }
