@@ -14,7 +14,7 @@ const todosSlice = createSlice({
   reducers: {
     addTodo(state, action) {
       const { id, text } = action.payload;
-      state.push({ id, text, completed: false });
+      state.unshift({ id, text, completed: false });
     },
     toggleTodo(state, action) {
       const todo = state.find((todo) => todo.id === action.payload);
